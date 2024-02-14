@@ -1,4 +1,73 @@
-<h1>Gioia mi primer pagina web</h1>
-
-<p>{{nombre}} {{apellido}}</p>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estilo Espacial con Iconos</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-JZQjkz6cZo0/Q8jGztEYv+7qzK/zZc06jEh30xGeEYAW+ZIaxu1ghso5RlS0C7P5o2bpQ0I+f/5L6Y2P1Shc3Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    body {
+        background-color: #000;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+    }
+    h1 {
+        font-size: 3em;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        margin-top: 50px;
+        color: pink;
+    }
+    h1::after {
+        content: "";
+        display: block;
+        width: 100px;
+        height: 2px;
+        background-color: #fff;
+        margin: 20px auto;
+    }
+    .icon {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+    nav {
+        margin-top: 20px;
+    }
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 10px;
+        padding: 5px 10px;
+        border: 1px solid #fff;
+        border-radius: 5px;
+    }
+    nav a:hover {
+        background-color: #fff;
+        color: #000;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gioia mi primera página web</h1>
+        <div class="icon"><i class="fas fa-space-shuttle"></i></div>
+        <div class="icon"><i class="fas fa-rocket"></i></div>
+        <div class="icon"><i class="fas fa-satellite"></i></div>
+        <nav>
+            <a href={% url "inicio" %}>Inicio</a>
+            <a href={% url "lista_empleados" %}>Lista</a>
+            <a href={% url "crear_empleado" %}>Crear</a>
+        </nav>
+    
+    </div>
+</body>
+</html>
