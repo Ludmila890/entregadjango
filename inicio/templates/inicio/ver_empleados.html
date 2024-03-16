@@ -1,0 +1,12 @@
+{% extends "base.html"%}
+{% block h1_header %}
+<h1>Datos de los Empleados {{empleado.id}}</h1>
+{% endblock h1_header %}
+
+{% block main %}
+<ul>
+    <li>Empleado: {{empleado.empleado}}</li>
+    <li>Sector: {{empleado.sector}}</li>
+    <li>Jornada: {{empleado.jornada}}</li>
+</ul>
+{% endblock main %}

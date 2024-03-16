@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block h1_header %}Detalle del {{horarios}}
+{% endblock h1_header %}
+
+{% block main %}
+<ul>
+    <li>horas_cargadas:{{horarios.horas_cargadas}}</li>
+    <li>tareas_realizadas:{{horarios.tareas_realizadas}}</li>
+    <li>fecha_ingreso:{{horarios.fecha_ingreso}}</li>
+</ul>
+{% endblock main %}
+
+
+

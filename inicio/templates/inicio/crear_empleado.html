@@ -1,0 +1,18 @@
+{% extends "base.html"%}
+
+{% block header %}
+<h1>Cargar empleados</h1>
+{% endblock header %}
+{% block main %}
+
+    <form action={% url "crear_empleado"%} method="POST">
+        {% csrf_token %}
+
+        <input type="submit" value="Cargar">
+        <table>
+        {{formulario}}
+        </table>
+    </form>
+{% endblock main %}
+
+

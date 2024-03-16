@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block h1_header %}Lista de Empleados
+{% endblock h1_header %}
+
+{% block main %}
+<a href={% url 'crear_empleado' %}>Crear Empleado</a>
+<form action={% url 'lista_empleados' %}>
+    {{ formulario }}
+    <input type="submit" value="Buscar">
+</form>
+{% if lista_empleados.count %}
+<ul>
+    {% for empleado in lista_empleados %}
+    <li>{{ empleado }}|
+    <a href={% url 'ver_empleado' empleado.id %}>Ver</a> 
+    | <a href={% url 'eliminar_empleado' empleado.id %}>Eliminar</a> 
+    | <a href={% url 'editar_empleado' empleado.id %}>Editar</a>|
+    
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No se encontró ningún empleado</p>
+{% endif %}
+{% endblock main %}
+
+
+

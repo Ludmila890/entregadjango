@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block header %}
+<h1>Cargar horarios</h1>
+{% endblock header %}
+
+{% block main %}
+<form action="{% url 'crear_horarios' %}" method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form }}
+        </table>
+        <input type="submit" value="Cargar Horas">
+    </form>
+{% endblock main %}
+
+
+

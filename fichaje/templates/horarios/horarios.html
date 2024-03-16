@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block h1_header %}Listado de horarios{% endblock h1_header %}
+
+{% block main %}
+<a href="{% url 'crear_horario' %}">Crear Horario</a>
+<!--<form action="{% url 'lista_empleados' %}" method="GET">
+    {{ formulario }}
+    <input type="submit" value="Buscar">
+</form>!-->
+{% if horarios %}
+<ul>
+    {% for horario in horarios %}
+    <li>
+        {{ horario }}|
+        <a href="{% url 'detalle_horario' horario.id %}">Detalle</a> 
+    | <a href="{% url 'eliminar_horario' horario.id %}">Eliminar</a>|
+    | <a href="{% url 'editar_horario' horario.id %}">Editar</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No se encontraron horarios</p>
+{% endif %}
+{% endblock main %}
