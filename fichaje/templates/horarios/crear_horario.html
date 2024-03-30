@@ -7,11 +7,6 @@
     {% csrf_token %}
     <table>
         {{ form.as_p }}
-        <tr>
-            <th>Imagen:</th>
-            <td>{{ form.imagen }}</td>
-        </tr>
-        <!-- Muestra la imagen si está disponible -->
         {% if form.instance.imagen %}
         <tr>
             <th>Imagen:</th>
