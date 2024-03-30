@@ -2,8 +2,9 @@ from django.views.generic import CreateView, DeleteView, UpdateView, ListView, D
 from fichaje.models import Horarios
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import HorariosForm
 
-class ListarHorarios(ListView):
+class HorariosList(ListView):
     model = Horarios
     context_object_name = 'horarios'
     template_name = 'horarios/horarios.html'
@@ -11,8 +12,8 @@ class ListarHorarios(ListView):
 class CrearHorarios(CreateView):
     model = Horarios
     template_name = "horarios/crear_horario.html"
-    fields = ['horas_cargadas', 'tareas_realizadas', 'fecha_ingreso']
-    success_url = reverse_lazy('listar_horarios')
+    form_class = HorariosForm
+    success_url = reverse_lazy('horarios')
 
 class EliminarHorarios(LoginRequiredMixin, DeleteView):
     model = Horarios
@@ -23,7 +24,7 @@ class EditarHorarios(LoginRequiredMixin, UpdateView):
     model = Horarios
     template_name = "horarios/editar_horario.html"
     success_url = reverse_lazy('horarios')
-    fields = ['horas_cargadas', 'tareas_realizadas', 'fecha_ingreso']
+    fields = ['horas_cargadas', 'tareas_realizadas', 'fecha_ingreso', 'imagen']
 
 class DetalleHorarios(DetailView):
     model = Horarios

@@ -11,11 +11,17 @@
 {% if horarios %}
 <ul>
     {% for horario in horarios %}
+    {{ horario.horas_cargadas }} - {{ horario.tareas_realizadas }} |
+    <!-- Mostrar la imagen si está disponible -->
+    {% if horario.imagen %}
+        <img src="{{ horario.imagen.url }}" alt="Imagen del horario" style="max-width: 100px;">
+    {% endif %}
     <li>
         {{ horario }}|
         <a href="{% url 'detalle_horario' horario.id %}">Detalle</a> 
     | <a href="{% url 'eliminar_horario' horario.id %}">Eliminar</a>|
     | <a href="{% url 'editar_horario' horario.id %}">Editar</a>
+
     </li>
     {% endfor %}
 </ul>

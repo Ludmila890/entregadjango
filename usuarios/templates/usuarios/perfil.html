@@ -3,10 +3,11 @@
 {% endblock h1_header %}
 {% block main %}
 <ul>
-    <li>Nombre:{{request.user.first_name}}</li>
-    <li>Apellido:{{request.user.last_name}}</li>
-    <li>Email:{{request.user.email}}</li>
-    
+    <li>Nombre: {{ request.user.first_name }}</li>
+    <li>Apellido: {{ request.user.last_name }}</li>
+    <li>Email: {{ request.user.email }}</li>
+    <li>Hobbies: {{ request.user.datosextras.hobbies }}</li> <!-- Mostrar hobbies -->
+    <li>Avatar: <img src="{{ request.user.datosextras.avatar.url }}" alt="" height="90px"></li>
 </ul>
 <a class="btn btn-secondary" href="{% url "editar_perfil" %}">Editar perfil</a>
 <a class="btn btn-secondary" href="{% url "cambiar_contrasenia" %}">Cambiar contrasenia</a>

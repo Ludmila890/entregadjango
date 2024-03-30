@@ -5,13 +5,13 @@
 {% endblock h1_header %}
 
 {% block main %}
-    <form action="{% url 'editar_horario' horarios.id %}" method="POST">
-        {% csrf_token %}
-        <table>
-            {{ form }}
-        </table>
-        <input type="submit" value="Editar">
-    </form>
+<form action="{% url 'editar_horario' horarios.id %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Editar">
+</form>
 {% endblock main %}
 
 

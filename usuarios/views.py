@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserChangeForm
 from django.contrib.auth import authenticate, login as django_login
-from usuarios.forms import CreacionDeUsuario, EditarPerfil
+from usuarios.forms import CreacionDeUsuario, EditarPerfilForm
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from usuarios.models import DatosExtras
+from .forms import EditarPerfilForm
 
 
 def login(request):
@@ -38,26 +39,28 @@ def registro(request):
 def perfil(request):
     return render(request,'usuarios/perfil.html')
 
+from .forms import EditarPerfilForm
+
 def editar_perfil(request):
-    
-    user = request.user
-    datos_extra, _ = DatosExtras.objects.get_or_create(user=user)
-    
-    if request.method == 'POST':
-        formulario = EditarPerfil(request.POST, request.FILES, instance=request.user)
+    usuario = request.user
+    usuario_datos_extras, creado = DatosExtras.objects.get_or_create(user=usuario)
+
+    if request.method == "POST":
+        formulario = EditarPerfilForm(request.POST, request.FILES, instance=usuario_datos_extras)
         if formulario.is_valid():
-            avatar = formulario.cleaned_data.get('avatar')
-            if avatar:
-                datos_extra.avatar = avatar
-                
-            datos_extra.save()
             formulario.save()
             return redirect('perfil')
     else:
-        formulario = EditarPerfil(initial={'avatar': datos_extra.avatar}, instance=request.user)
-    return render(request,'usuarios/editar_perfil.html', {'formulario': formulario})
+        formulario = EditarPerfilForm(instance=usuario_datos_extras)
+    
+    return render(request, 'usuarios/editar_perfil.html', {'formulario': formulario})
 
 class EditarContrasenia(PasswordChangeView):
     template_name = 'usuarios/cambiar_contrasenia.html'
     succes_urls = reverse_lazy('perfil')
     
+#def perfil(request):
+#    usuario = request.user  # Obtener el usuario actual
+#    datos_extra = DatosExtras.objects.get(user=usuario)  # Obtener los datos extra del usuario
+#    
+#    return render(request, 'perfil.html', {'usuario': usuario, 'datos_extra': datos_extra})

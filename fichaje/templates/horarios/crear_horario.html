@@ -2,16 +2,24 @@
 {% block header %}
 <h1>Cargar horarios</h1>
 {% endblock header %}
-
 {% block main %}
-<form action="{% url 'crear_horarios' %}" method="POST">
-        {% csrf_token %}
-        <table>
-            {{ form }}
-        </table>
-        <input type="submit" value="Cargar Horas">
-    </form>
+<form action="{% url 'crear_horario' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        {{ form.as_p }}
+        <tr>
+            <th>Imagen:</th>
+            <td>{{ form.imagen }}</td>
+        </tr>
+        <!-- Muestra la imagen si está disponible -->
+        {% if form.instance.imagen %}
+        <tr>
+            <th>Imagen:</th>
+            <td><img src="{{ form.instance.imagen.url }}" alt="Imagen de horario"></td>
+        </tr>
+        {% endif %}
+    </table>
+    <input type="submit" value="Cargar Horas">
+</form>
+
 {% endblock main %}
-
-
-

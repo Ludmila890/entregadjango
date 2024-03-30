@@ -4,13 +4,12 @@
 {% endblock header %}
 
 {% block main %}
-<form action="{% url 'editar_perfil' %}" method="POST"enctype="multipart/form-data">
-        {% csrf_token %}
-        <table>
-            {{formulario}}
-        </table>
-        <input type="submit" value="Editar">
-    </form>
+<form action={% url "editar_perfil" %} method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ formulario.as_p }}
+    <button type="submit">Guardar cambios</button>
+</form>
+
 {% endblock main %}
 
 
